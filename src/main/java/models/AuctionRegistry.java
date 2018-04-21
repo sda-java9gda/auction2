@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.io.IOException;
 import java.util.logging.FileHandler;
 
-public class AuctionRegistry implements Serializable {
+public class AuctionRegistry {
     private static AuctionRegistry instance = null;
-    final private String filename = "data/auctions.dat";
+    //final private String filename = "data/auctions.dat";
 
     public static AuctionRegistry getInstance(){
         if (instance == null){
@@ -21,13 +21,7 @@ public class AuctionRegistry implements Serializable {
     private ArrayList<Auction> auctions;
 
     private AuctionRegistry() {
-        try {
-            this.auctions = (ArrayList<Auction>) FileHandler.deserialise(filename);
-        } catch (IOException e) {
-            this.auctions = new ArrayList<>();
-        } catch (ClassNotFoundException e) {
-            System.out.println("Serialization error");
-        }
+            this.auctions = FileHandler.load("auctions");
     }
 
     public Auction findAction(String name) throws AuctionNotFoundException {
@@ -49,9 +43,14 @@ public class AuctionRegistry implements Serializable {
     }
 
     public void addAuction(double price, String name, String destription, int counter, User user){
-        auctions.add(new Auction(price,name,destription,counter,user));``
-        }
+        auctions.add(new Auction(price,name,destription,counter,user));
     }
 
-
+    public void saveData() {
+        try {
+            FileHandler.save(this.auctions, "auctions");
+        } catch (IOException e) {
+            System.err.println("Write error or file not found.");
+        }
+    }
 }

@@ -17,6 +17,17 @@ public class Auction {
         this.user = user;
     }
 
+    @Override
+    public String toString() {
+        return price + ";" +
+                name + ";" +
+                destription + ";" +
+                counter + ";"+
+                isFinished + ";"+
+                user + ";" +
+                filename;
+    }
+
     public User getUser() {
         return user;
     }

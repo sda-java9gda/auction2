@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class UserRegistry implements Serializable {
      private static UserRegistry instance = null;
-     final private String filename ="data/user.dat";
+     //final private String filename ="data/user.dat";
 
      public static UserRegistry getInstance() {
          if (instance == null) {
@@ -20,16 +20,9 @@ public class UserRegistry implements Serializable {
      private ArrayList<User> users;
 
      private UserRegistry() {
-         try {
-             users = (ArrayList<User>) FileHandler.deserialise(filename);
-         } catch (IOException e) {
-             users = new ArrayList<>();
-             users.add(new User("user", "user"));
-         } catch (ClassNotFoundException e) {
-             System.out.println("Serialization error!");
-         }
+         users = (ArrayList<User>) FileHandler.load("filename");
      }
-    public void findAdmin(String login, String password) throws UserNotFoundException {
+    public void findUser(String login, String password) throws UserNotFoundException {
         for (User user : this.users) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
                 return;
@@ -46,7 +39,7 @@ public class UserRegistry implements Serializable {
     }
     public void saveData() {
         try {
-            FileHandler.serialize(this.users, filename);
+            FileHandler.save(this.users, "users");
         } catch (IOException e) {
             System.err.println("Write error or file not found.");
         }
