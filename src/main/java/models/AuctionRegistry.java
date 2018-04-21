@@ -9,7 +9,6 @@ import java.util.logging.FileHandler;
 
 public class AuctionRegistry {
     private static AuctionRegistry instance = null;
-    //final private String filename = "data/auctions.dat";
 
     public static AuctionRegistry getInstance(){
         if (instance == null){
@@ -21,7 +20,7 @@ public class AuctionRegistry {
     private ArrayList<Auction> auctions;
 
     private AuctionRegistry() {
-            this.auctions = FileHandler.load("auctions");
+            this.auctions = models.FileHandler.load("auctions");
     }
 
     public Auction findAction(String name) throws AuctionNotFoundException {
@@ -42,15 +41,15 @@ public class AuctionRegistry {
         throw new AuctionNotFoundException();
     }
 
-    public void addAuction(double price, String name, String destription, int counter, User user){
-        auctions.add(new Auction(price,name,destription,counter,user));
+    public void addAuction(double price, String name, String destription, User user){
+        auctions.add(new Auction(price,name,destription,user));
     }
 
     public void saveData() {
-        try {
-            FileHandler.save(this.auctions, "auctions");
-        } catch (IOException e) {
-            System.err.println("Write error or file not found.");
-        }
+       // try {
+            models.FileHandler.save(this.auctions, "auctions");
+      //  } catch (IOException e) {
+     //       System.err.println("Write error or file not found.");
+      //  }
     }
 }

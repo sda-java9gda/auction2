@@ -10,14 +10,14 @@ import exceptions.WrongPasswordException;
 public class UserController {
     public static void addUser(String login, String password) {
         try {
-            UserRegistry.getInstance().addUser(login, password);
+            UserRegistry.getInstance().addUserAccount(login, password);
             System.out.println(UserView.printAddSuccess(login));
         } catch (DuplicateFoundException e) {
             System.out.println(UserView.printDuplicateFound(login));
-        } catch (WrongLoginException e) {
-            System.out.println(UserView.printWrongLogin());
-        } catch (WrongPasswordException e) {
-            System.out.println(UserView.printWrongPassword());
+     //   } catch (WrongLoginException e) {
+      //      System.out.println(UserView.printWrongLogin());
+     //   } catch (WrongPasswordException e) {
+      //      System.out.println(UserView.printWrongPassword());
         }
     }
 

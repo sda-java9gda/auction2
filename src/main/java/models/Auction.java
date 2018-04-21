@@ -9,12 +9,15 @@ public class Auction {
     private User user;
     final private String filename = "data/auctionList.dat";
 
-    public Auction(double price, String name, String destription, int counter, User user) {
+    public Auction(double price, String name, String destription, User user) {
         this.price = price;
         this.name = name;
         this.destription = destription;
         this.isFinished = false;
         this.user = user;
+    }
+
+    public Auction() {
     }
 
     @Override

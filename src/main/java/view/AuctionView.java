@@ -21,5 +21,7 @@ public class AuctionView {
     public static String printAddSuccess(String name) { return "Dodano aukcje " + name; }
 
     public static String printSaledSuccess(String name) { return "Aukcja zakończona " + name; }
+
+    public static String printDuplicateFound(String name) { return "Istnieje już taka aukcja " + name; }
 }
 
