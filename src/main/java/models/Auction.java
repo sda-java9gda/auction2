@@ -76,4 +76,21 @@ public class Auction {
     public void setFinished(boolean finished) {
         isFinished = finished;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if(!(o instanceof Auction)){
+            return false;
+        }
+        if(o == this){
+            return true;
+        }
+        if(o instanceof Auction){
+            if(((Auction) o).name.equals(this.name) &&
+                    ((Auction) o).destription.equals(this.destription)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -22,7 +22,7 @@ public class FileHandler {
     }
 
     public static ArrayList<Auction> loadAuction(String filename) {
-        String filepath = "src/main/resources" + filename + ".txt";
+        String filepath = "src/main/resources/" + filename + ".txt";
         ArrayList<Auction> list = new ArrayList<Auction>();
         File file = new File(filepath);
         Scanner sc = null;
@@ -40,7 +40,7 @@ public class FileHandler {
     }
 
     public static ArrayList<User> loadUser(String filename) {
-        String filepath = "src/main/resources" + filename + ".txt";
+        String filepath = "src/main/resources/" + filename + ".txt";
         ArrayList<User> list = new ArrayList<User>();
         File file = new File(filepath);
         Scanner sc = null;
@@ -61,12 +61,12 @@ public class FileHandler {
     private static Auction parseToAuction(String line) {
         String[] splits = line.split(";");
         Auction auction = new Auction();
-        String name = splits[0];
-        double price = Double.parseDouble(splits[1]);
-        String description = splits[2];
-        int counter = Integer.parseInt(splits[3]);
-        boolean isFinished = Boolean.parseBoolean(splits[4]);
-        User user = new User(splits[5], splits[6]);
+        auction.setName(splits[1]);
+        auction.setPrice(Double.parseDouble(splits[0]));
+        auction.setDestription(splits[2]);
+        auction.setCounter(Integer.parseInt(splits[3]));
+        auction.setFinished(Boolean.parseBoolean(splits[4]));
+        auction.setUser(new User(splits[5], splits[6]));
 
         return auction;
     }
