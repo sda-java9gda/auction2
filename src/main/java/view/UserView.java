@@ -26,7 +26,7 @@ public class UserView {
 
     public static String printAddSuccess(String login) { return "Dodano uzytkownika " + login; }
 
-    public static String printDuplicateFound(String login) { return "Uzytkownik " + login + " juz istnieje."; }
+    public static String printDuplicateFound(String login) { return "Uzytkownik " + login + " juz istnieje"; }
 
     public static String printRemovedSuccess(String login) { return "Usunieto uzytkownika " + login; }
 
