@@ -51,6 +51,21 @@ public class AuctionRegistry {
         auctions.add(new Auction(price, name, destription, user));
     }
 
+    public void RemoveAuction(String name) throws AuctionNotFoundException{
+        for (int i = 0; i < auctions.size() ; i++) {
+            if (auctions.get(i).getName().equals(name))
+                auctions.remove(i);
+        }
+        throw new AuctionNotFoundException();
+    }
+    public void RemoveAuctionByUser(Auction auction, User user) throws AuctionNotFoundException{
+        for (int i = 0; i < auctions.size() ; i++) {
+            if (auctions.get(i).getName().equals(auction.getName())&& auction.getUser().getLogin().equals(user.getLogin()))
+                auctions.remove(i);
+        }
+        throw new AuctionNotFoundException();
+    }
+
     public void saveData() {
         models.FileHandler.save(this.auctions, "auctions");
     }
