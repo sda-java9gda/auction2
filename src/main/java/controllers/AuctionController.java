@@ -9,13 +9,15 @@ import view.AuctionView;
 
 
 public class AuctionController {
-    public static void addAuction(Double price, String decription, String name, User user) {
-       // try {
+    public static boolean addAuction(Double price, String decription, String name, User user) {
+        try {
             AuctionRegistry.getInstance().addAuction(price, name, decription, user);
             System.out.println(AuctionView.printAddSuccess(name));
-   //     } catch (DuplicateFoundException e) {
+            return true;
+        } catch (DuplicateFoundException e) {
             System.out.println(AuctionView.printDuplicateFound(name));
-      //  }
+        }
+        return false;
     }
 
     public static void makeOffer(Double price, Auction auction) {

@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class FileHandler {
     public static void save(ArrayList list, String filename) {
-        String filepath = "src/" + filename + ".txt";
+        String filepath = "src/main/java/" + filename + ".txt";
         try {
-            FileWriter fileWriter = new FileWriter(filename, false);
+            FileWriter fileWriter = new FileWriter(filepath, false);
             PrintWriter printWriter = new PrintWriter(fileWriter);
             for (int i = 0; i < list.size(); i++) {
                 printWriter.println(list.get(i).toString());
@@ -22,9 +22,9 @@ public class FileHandler {
     }
 
     public static ArrayList load(String filename) {
-        String filepath = "src/" + filename + ".txt";
+        String filepath = "src/main/" + filename + ".txt";
         ArrayList<Object> list = new ArrayList<Object>();
-        File file = new File(filename);
+        File file = new File(filepath);
         Scanner sc = null;
         try {
             sc = new Scanner(file);
@@ -37,7 +37,6 @@ public class FileHandler {
                     User user = parseToUser(line);
                     list.add(user);
                 }
-
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
