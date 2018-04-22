@@ -77,6 +77,7 @@ public class Main {
                     System.out.println("Co chcesz zrobić?");
                     System.out.println(" 1 - obejrzyj wszystkie aukcje");
                     System.out.println(" 2 - dodaj aukcję");
+                    System.out.println(" 3 - usuń aukcję");
                     System.out.println(" 0 - wyjdź z programu");
 
                     answer = scanner.nextLine();

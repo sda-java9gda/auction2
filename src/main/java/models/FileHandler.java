@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class FileHandler {
     public static void save(ArrayList list, String filename) {
-        String filepath = "src/main/java/" + filename + ".txt";
+        String filepath = "src/main/resources/" + filename + ".txt";
         try {
             FileWriter fileWriter = new FileWriter(filepath, false);
             PrintWriter printWriter = new PrintWriter(fileWriter);
@@ -21,22 +21,36 @@ public class FileHandler {
         }
     }
 
-    public static ArrayList load(String filename) {
-        String filepath = "src/main/" + filename + ".txt";
-        ArrayList<Object> list = new ArrayList<Object>();
+    public static ArrayList<Auction> loadAuction(String filename) {
+        String filepath = "src/main/resources" + filename + ".txt";
+        ArrayList<Auction> list = new ArrayList<Auction>();
         File file = new File(filepath);
         Scanner sc = null;
         try {
             sc = new Scanner(file);
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
-                if (filename.equals("auctions")) {
-                    Auction auction = parseToAuction(line);
-                    list.add(auction);
-                } else if (filename.equals("users")) {
-                    User user = parseToUser(line);
-                    list.add(user);
-                }
+                Auction auction = parseToAuction(line);
+                list.add(auction);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static ArrayList<User> loadUser(String filename) {
+        String filepath = "src/main/resources" + filename + ".txt";
+        ArrayList<User> list = new ArrayList<User>();
+        File file = new File(filepath);
+        Scanner sc = null;
+        try {
+            sc = new Scanner(file);
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                User user = parseToUser(line);
+                list.add(user);
+
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

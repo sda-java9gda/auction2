@@ -23,7 +23,7 @@ public class UserRegistry implements Serializable {
     private ArrayList<User> users;
 
     private UserRegistry() {
-        users = models.FileHandler.load("users");
+        users = models.FileHandler.loadUser("users");
     }
 
     public void findUser(String login, String password) throws UserNotFoundException {

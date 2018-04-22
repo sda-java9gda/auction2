@@ -7,7 +7,6 @@ public class Auction {
     private int counter=0;
     private boolean isFinished;
     private User user;
-    final private String filename = "data/auctionList.dat";
 
     public Auction(double price, String name, String destription, User user) {
         this.price = price;
@@ -27,8 +26,7 @@ public class Auction {
                 destription + ";" +
                 counter + ";"+
                 isFinished + ";"+
-                user + ";" +
-                filename;
+                user;
     }
 
     public User getUser() {

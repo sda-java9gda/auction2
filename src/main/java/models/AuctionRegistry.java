@@ -21,7 +21,7 @@ public class AuctionRegistry {
     private ArrayList<Auction> auctions;
 
     private AuctionRegistry() {
-        this.auctions = models.FileHandler.load("auctions");
+        this.auctions = models.FileHandler.loadAuction("auctions");
     }
 
     public Auction findAuction(String name) throws AuctionNotFoundException {
