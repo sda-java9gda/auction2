@@ -10,6 +10,7 @@ public enum State {
 
     AUCTION_CREATE,
     AUCTION_LIST,
+    AUCTION_CHOOSED,
     AUCTION_OFFER,
 
     SAVE_DATA,

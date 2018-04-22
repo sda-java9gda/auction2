@@ -1,0 +1,2 @@
+17.0;Rower;asd;0;false;qaz;qaz
+1100.0;Samochód;asd;0;false;qaz;sa123

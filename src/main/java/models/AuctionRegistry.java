@@ -2,6 +2,8 @@ package models;
 
 import exceptions.AuctionNotFoundException;
 import exceptions.DuplicateFoundException;
+import exceptions.WrongLoginException;
+import exceptions.WrongPriceException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -53,15 +55,19 @@ public class AuctionRegistry {
 
     public void RemoveAuction(String name) throws AuctionNotFoundException{
         for (int i = 0; i < auctions.size() ; i++) {
-            if (auctions.get(i).getName().equals(name))
+            if (auctions.get(i).getName().equals(name)) {
                 auctions.remove(i);
+                return;
+            }
         }
         throw new AuctionNotFoundException();
     }
     public void RemoveAuctionByUser(Auction auction, User user) throws AuctionNotFoundException{
         for (int i = 0; i < auctions.size() ; i++) {
-            if (auctions.get(i).getName().equals(auction.getName())&& auction.getUser().getLogin().equals(user.getLogin()))
+            if (auctions.get(i).getName().equals(auction.getName())&& auction.getUser().getLogin().equals(user.getLogin())) {
                 auctions.remove(i);
+                return;
+            }
         }
         throw new AuctionNotFoundException();
     }
@@ -70,7 +76,20 @@ public class AuctionRegistry {
         models.FileHandler.save(this.auctions, "auctions");
     }
 
-    public void getAuctions(){
+    public ArrayList<Auction> getAuctions(){
+        return auctions;
+    }
 
+    public void makeOffer(Double price, Auction auction) throws WrongPriceException{
+        if (price > auction.getPrice()){
+            auction.setPrice(price);
+            auction.setCounter(auction.getCounter()+1);
+        } else {
+            throw new WrongPriceException();
+        }
+        if (auction.getCounter() == 3) {
+            auction.setFinished(true);
+
+        }
     }
 }

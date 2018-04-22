@@ -1,5 +1,7 @@
 package models;
 
+import view.AuctionView;
+
 public class Auction {
     private double price;
     private String name;

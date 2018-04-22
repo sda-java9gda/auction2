@@ -10,7 +10,7 @@ public class AuctionView {
 
         StringBuilder sb = new StringBuilder();
         for (Auction auction : auctions) {
-            StringBuilder append = sb.append(auction.getName()).append("\n");
+            StringBuilder append = sb.append(auction.getName()).append(" ").append(auction.getPrice()).append("\n");
         }
         return sb.toString();
     }
@@ -25,5 +25,7 @@ public class AuctionView {
     public static String printDuplicateFound(String name) { return "Istnieje już taka aukcja " + name; }
 
     public static String printRemoveSuccess(String name) {return  "Aukcja" + name + "usunięta przez użytkownika";}
+
+    public static String printWrongPrice() {return  "Podano zbyt małą cenę";}
 }
 
